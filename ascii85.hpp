@@ -53,6 +53,10 @@ public:
                 block[blockSize] = input[i];
             }
 
+            if (blockSize < 5 && blockSize != 0) {
+            	throw std::runtime_error("Incomplete ASCII85 block");
+        	}
+
             unsigned long value = 0;
             for (std::size_t j = 0; j < 5; ++j) {
                 value = value * 85 + (block[j] - '!');
